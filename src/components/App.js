@@ -1,4 +1,5 @@
 import React from 'react';
+import openSocket from 'socket.io-client';
 
 import { 
 	BrowserRouter as Router, 
@@ -7,8 +8,10 @@ import {
 	Redirect 
 } from "react-router-dom";
 
+
 import MainPage from './MainPage'
 import LoginPage from './LoginPage'
+import Error from './Error'
 
 const styles = {
   root: {
@@ -30,11 +33,15 @@ const styles = {
 
 
 function App() {
+  const socket = openSocket('http://localhost:8000');
+
   return (
-    <div style={styles.root} className="App">
-      <LoginPage/>
-    </div>
-  );
+    <Switch>
+      <Route path = '/' component = {LoginPage} exact />
+      <Route path = '/room' component = {MainPage} />
+      <Route component = {Error} />
+    </Switch>
+  )  
 }
 
 export default App;

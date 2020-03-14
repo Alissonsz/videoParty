@@ -27,15 +27,15 @@ export default class MainPage extends React.Component{
                 <Grid container style={styles.auxGrid} >
                 <Grid.Row >
                     <Grid.Column width={11}>
-                    <VideoPlayer/>
+                      <VideoPlayer/>
                     </Grid.Column>
                     <Grid.Column style={styles.rightColumn} color='blue' width={5}>
-                    <Chat/>
+                      <Chat/>
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
                     <GridColumn>
-                    <VideoName tittle='Video name'/>
+                      <VideoName tittle='Video name'/>
                     </GridColumn>
                 </Grid.Row>
                 </Grid>
