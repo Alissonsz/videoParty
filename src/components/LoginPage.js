@@ -33,6 +33,7 @@ export default class LoginPage extends React.Component{
 
   handleEntryRoom(e){
     this.props.history.push(`/room/${this.state.alreadCreatedURL}`);
+    sessionStorage.setItem("userName", this.state.alreadCreatedName);
   }
 
   handleNewRoomNameHasChange(e){

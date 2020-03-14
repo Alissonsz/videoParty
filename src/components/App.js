@@ -1,5 +1,4 @@
 import React from 'react';
-import openSocket from 'socket.io-client';
 
 import { 
 	BrowserRouter as Router, 
@@ -33,12 +32,11 @@ const styles = {
 
 
 function App() {
-  const socket = openSocket('http://localhost:8000');
 
   return (
     <Switch>
       <Route path = '/' component = {LoginPage} exact />
-      <Route path = '/room' component = {MainPage} />
+      <Route path = '/room/:roomURL' component = {MainPage} />
       <Route component = {Error} />
     </Switch>
   )  
