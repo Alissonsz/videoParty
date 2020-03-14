@@ -1,13 +1,22 @@
 import React from 'react';
-import { Container, Grid, GridColumn } from 'semantic-ui-react'
-import HeaderSite from './HeaderSite'
-import VideoPlayer from './VideoPlayer'
-import Chat from './Chat'
-import VideoName from './VideoName'
+
+import { 
+	BrowserRouter as Router, 
+	Route, 
+	Switch,
+	Redirect 
+} from "react-router-dom";
+
+import MainPage from './MainPage'
+import LoginPage from './LoginPage'
 
 const styles = {
   root: {
-    marginTop: 0
+    width: '100%',
+    height: '100%',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   auxGrid: {
     paddingRight: '3px',
@@ -22,26 +31,8 @@ const styles = {
 
 function App() {
   return (
-    <div className="App">
-      <Grid container style={styles.root} >
-        <HeaderSite></HeaderSite>
-        <Grid container style={styles.auxGrid} >
-          <Grid.Row >
-            <Grid.Column width={11}>
-              <VideoPlayer/>
-            </Grid.Column>
-            <Grid.Column style={styles.rightColumn} color='blue' width={5}>
-              <Chat/>
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
-            <GridColumn>
-              <VideoName tittle='Video name'/>
-            </GridColumn>
-          </Grid.Row>
-        </Grid>
-        
-      </Grid>
+    <div style={styles.root} className="App">
+      <LoginPage/>
     </div>
   );
 }
