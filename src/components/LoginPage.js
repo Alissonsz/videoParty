@@ -13,9 +13,9 @@ export default class LoginPage extends React.Component{
     this.handleExistsRoomNameHasChange = this.handleExistsRoomNameHasChange.bind(this);
     this.handleExistsRoomURLHasChange = this.handleExistsRoomURLHasChange.bind(this);
     this.handleEntryRoom = this.handleEntryRoom.bind(this);
-    this.handleNewRoomNameHasChange = this.handleNewRoomNameHasChange.bind(this);
+    /*this.handleNewRoomNameHasChange = this.handleNewRoomNameHasChange.bind(this);
     this.handleNewRoomURLHasChange = this.handleNewRoomURLHasChange.bind(this);
-    this.handleCreateRoom = this.handleCreateRoom.bind(this);
+    this.handleCreateRoom = this.handleCreateRoom.bind(this);*/
 
   }
 
@@ -36,7 +36,7 @@ export default class LoginPage extends React.Component{
     sessionStorage.setItem("userName", this.state.alreadCreatedName);
   }
 
-  handleNewRoomNameHasChange(e){
+  /*handleNewRoomNameHasChange(e){
     this.setState({newName: e.target.value});
 
     e.preventDefault();
@@ -51,7 +51,7 @@ export default class LoginPage extends React.Component{
 
   handleCreateRoom(e){
     this.props.history.push(`/room/${this.state.newURL}`);
-  }
+  }*/
 
 
   render(){
@@ -69,7 +69,7 @@ export default class LoginPage extends React.Component{
                 </Button>
               </Segment>
           </Form>
-          <Header as='h4'>OU</Header>
+          {/*<Header as='h4'>OU</Header>
           <Form size='large'>
             <Segment stacked>
               <Header as='h2'>Crie uma nova sala</Header>
@@ -80,7 +80,7 @@ export default class LoginPage extends React.Component{
                 Entrar
               </Button>
             </Segment>
-          </Form>
+    </Form>*/}
         </Grid.Column>
       </Grid>
     )

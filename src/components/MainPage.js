@@ -1,12 +1,14 @@
 import React from 'react';
-import { Container, Grid, GridColumn, Button, Feed, Input, Form } from 'semantic-ui-react'
+import { Grid, Button, Feed, Input, Form, Image } from 'semantic-ui-react'
 import openSocket from 'socket.io-client';
+
 import HeaderSite from './HeaderSite'
 import VideoPlayer from './VideoPlayer'
 import Chat from './Chat'
-import VideoName from './VideoName'
 import Loading from './Loading'
-import ReactPlayer from 'react-player';
+
+
+import noVideoImage from '../assets/videoicon.png'
 
 const styles = {
   root: {
@@ -61,6 +63,7 @@ export default class MainPage extends React.Component{
       this.chooseVideo = this.chooseVideo.bind(this);
       this.hasPlay = this.hasPlay.bind(this);
       this.hasPause = this.hasPause.bind(this);
+      this.hasSeek = this.hasSeek.bind(this);
     }
 
     componentDidMount(){
@@ -159,13 +162,17 @@ export default class MainPage extends React.Component{
       this.state.socket.emit('changePlay', data);
     }
 
+    hasSeek(time){
+      console.log(time);
+    }
+
     render(){
         return (
             this.state.loading == true ? <Loading /> :
             <Grid className = 'mainGrid'style={styles.root} container fluid >
                 
                 <Grid container style={styles.root} >
-                <Grid.Row style={{justifyContent: 'center'}}>
+                <Grid.Row style={{justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
                   <HeaderSite></HeaderSite>
                 </Grid.Row>  
                 <Grid.Row style={{justifyContent: 'center'}}>
@@ -179,8 +186,9 @@ export default class MainPage extends React.Component{
                 </Grid.Row>  
                 <Grid.Row >
                    
-                    <Grid.Column width={12}>
-                      <VideoPlayer url = {this.state.videoURL} playing = {this.state.playing} hasPlay = {this.hasPlay} hasPause = {this.hasPause}/>
+                    <Grid.Column width={12} style={{justifyContent: 'center', display: 'flex', background: 'whitesmoke', alignItems: 'center'}}>
+                      {!this.state.currentPlaying ? <Image width = '30%' height = '50%' src = {noVideoImage}></Image> :
+                      <VideoPlayer url = {this.state.videoURL} playing = {this.state.playing} hasPlay = {this.hasPlay} hasPause = {this.hasPause} hasSeek = {this.hasSeek} />}
                     </Grid.Column>
 
                     <Grid.Column style={styles.rightColumn} width={4}>
@@ -192,7 +200,7 @@ export default class MainPage extends React.Component{
                       </Feed>
                       <Form style={styles.chat}>
                         <Form style={{width: '100%', display: 'flex'}}>
-                          <Input style={{width: '100%'}} focus   placeholder='Type a message' onChange = {this.typingMessage} value = {this.state.newMessage} />
+                          <Input style={{width: '100%'}} focus   placeholder='Digite a sua mensagem' onChange = {this.typingMessage} value = {this.state.newMessage} />
                           <Button size = 'tiny' icon = 'right arrow' onClick = {this.sendMessage}/>
                         </Form>
                           

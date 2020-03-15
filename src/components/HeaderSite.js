@@ -1,5 +1,7 @@
 import React from 'react'
-import { Header } from 'semantic-ui-react'
+import { Image } from 'semantic-ui-react'
+
+import Logo from '../assets/logo.png'
 
 const styles = {
     header: {
@@ -12,9 +14,11 @@ const styles = {
 export default class HeaderSite extends React.Component {
     render(){
         return(
-            <Header as='h1' block color='red'  content='Video Party' textAlign = 'center' style={styles.header}>
+            <Image src = {Logo} ></Image>
 
-            </Header>
+            /*<Header as='h1' block color='red'  content='Video Party' textAlign = 'center' style={styles.header}>
+
+            </Header>*/
         )
     }
 }

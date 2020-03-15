@@ -15,7 +15,7 @@ const styles = {
 export default class VideoPlayer extends React.Component {
     render(){
         return(
-            <ReactPlayer url={this.props.url} loop={true} playing = {this.props.playing} onPlay={this.props.hasPlay} onPause={this.props.hasPause} youtubeConfig={{ playerVars: { origin: 'http://localhost:3000/', controls: 1 } }} width = '100%' height = '100%' />
+            <ReactPlayer url={this.props.url} loop={true} playing = {this.props.playing} onPlay={this.props.hasPlay} onPause={this.props.hasPause} onSeek = {e => console.log(e)} youtubeConfig={{ playerVars: { origin: 'http://localhost:3000/', controls: 1 } }} width = '100%' height = '100%' />
         )
     }
 }
