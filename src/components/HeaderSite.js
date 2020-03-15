@@ -12,8 +12,7 @@ const styles = {
 export default class HeaderSite extends React.Component {
     render(){
         return(
-            <Header as='h1' block color='blue'  content='Titulo' style={styles.header}>
-                
+            <Header as='h1' block color='red'  content='Video Party' textAlign = 'center' style={styles.header}>
 
             </Header>
         )

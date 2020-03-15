@@ -7,11 +7,10 @@ export default class Message extends React.Component {
         return(
             <Feed.Content style = {{maxWidth: '100%'}}>
                 <Feed.Summary>
-                    <Feed.User >{this.props.name} </Feed.User> &nbsp;  {this.props.message}
+                    <Feed.User > {this.props.name}: </Feed.User> &nbsp;  {this.props.message}
                 </Feed.Summary>
             </Feed.Content>    
         )
     }
-
 
 }

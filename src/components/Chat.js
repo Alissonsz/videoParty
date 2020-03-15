@@ -19,14 +19,10 @@ export default class Chat extends React.Component {
 
         this.state = {
             message: ''
-        }
-
-        
+        } 
     }
 
-    
     render(){
-        
         return(
             <Feed.Event style={{padding: '3%'}}>
                 {this.props.type == "join" ? <EntryRoomMessage name = {this.props.name} message = {this.props.message} /> : <Message name = {this.props.name} message = {this.props.message}/>}
