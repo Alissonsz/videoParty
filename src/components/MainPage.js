@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Grid, Button, Feed, Input, Form, Image } from 'semantic-ui-react'
 import openSocket from 'socket.io-client';
 
@@ -34,7 +35,8 @@ const styles = {
   },
   feedStyle: {
     height: '700px',
-    overflowY: 'auto'
+    overflowY: 'auto',
+    marginBottom: '15%'
   }
 }
 
@@ -54,6 +56,7 @@ export default class MainPage extends React.Component{
         videoURL: null,
         currentPlaying: null,
         playing: false,
+        playState: 'pause',
         roomEvents: []
       }
 
@@ -64,6 +67,7 @@ export default class MainPage extends React.Component{
       this.hasPlay = this.hasPlay.bind(this);
       this.hasPause = this.hasPause.bind(this);
       this.hasSeek = this.hasSeek.bind(this);
+
     }
 
     componentDidMount(){
@@ -86,7 +90,10 @@ export default class MainPage extends React.Component{
       });
 
       socket.on('newEvent', data => {
-        this.setState({roomEvents: [...this.state.roomEvents, data]});
+        this.setState({roomEvents: [...this.state.roomEvents, data]},
+          () => {
+            this.scrollToBottom();
+          });
 
       });
 
@@ -96,11 +103,26 @@ export default class MainPage extends React.Component{
       });
 
       socket.on('changePlay', data => {
-        if(data.userName != this.state.userName){
-          this.setState({playing: !this.state.playing})
+        if(this.state.playState != data.event){
+          this.setState({playState: data.event});
+          this.setState({playing: !this.state.playing});
+        
         }  
       });
+
+      this.scrollToBottom();
       
+    }
+
+    scrollToBottom = () => {
+      var scrollingElement = document.getElementById("feedDiv");
+      if(scrollingElement != undefined)
+        scrollingElement.scrollTop = scrollingElement.scrollHeight;
+    };
+
+    scrollToBottom() {
+      var scrollingElement = (document.scrollingElement || document.body); /* you could provide your scrolling element with react ref */
+      scrollingElement.scrollTop = scrollingElement.scrollHeight;
     }
 
     sendMessage(e){
@@ -146,18 +168,22 @@ export default class MainPage extends React.Component{
     }
 
     hasPlay(){
+      //this.setState({playState: 'play'});
       let data = {
         userName: this.state.userName,
-        roomURL: this.state.roomURL
+        roomURL: this.state.roomURL,
+        event: 'play'
       }
       this.state.socket.emit('changePlay', data);
       
     }
 
     hasPause(){
+      //this.setState({playState: 'pause'});
       let data = {
         userName: this.state.userName,
-        roomURL: this.state.roomURL
+        roomURL: this.state.roomURL,
+        event: 'pause'
       }
       this.state.socket.emit('changePlay', data);
     }
@@ -192,7 +218,7 @@ export default class MainPage extends React.Component{
                     </Grid.Column>
 
                     <Grid.Column style={styles.rightColumn} width={4}>
-                      <Feed style = {styles.feedStyle}>
+                      <Feed id = "feedDiv" style = {styles.feedStyle}>
                         {this.state.roomEvents.map( (event, i) => {
                           //console.log(this.state.roomEvents[i]);
                           return <Chat type = {this.state.roomEvents[i].type} message = {this.state.roomEvents[i].message} name = {this.state.roomEvents[i].userName} sendMessage = {this.sendMessage}/>

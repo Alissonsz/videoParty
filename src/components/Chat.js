@@ -11,6 +11,8 @@ const styles = {
         width: '100%',
         padding: '2%'
     }
+
+    
 }
 
 export default class Chat extends React.Component {
@@ -20,6 +22,8 @@ export default class Chat extends React.Component {
         this.state = {
             message: ''
         } 
+
+        
     }
 
     render(){

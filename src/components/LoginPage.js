@@ -60,9 +60,9 @@ export default class LoginPage extends React.Component{
         <Grid.Column style={{ maxWidth: 450 }}>
           <Form size='large'>
               <Segment stacked>
-                <Header as='h2'>Insira uma URL</Header>
+                <Header as='h2'>Crie ou entre em uma sala</Header>
                 <Form.Input fluid placeholder='Nome de usuário' onChange = { this.handleExistsRoomNameHasChange} />
-                <Form.Input fluid placeholder='URL' onChange = { this.handleExistsRoomURLHasChange}/>
+                <Form.Input fluid placeholder='Nome da sala' onChange = { this.handleExistsRoomURLHasChange}/>
 
                 <Button color='teal' fluid size='large' onClick = {this.handleEntryRoom}>
                   Entrar
