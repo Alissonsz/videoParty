@@ -8,13 +8,14 @@ import VideoPlayer from './VideoPlayer'
 import Chat from './Chat'
 import Loading from './Loading'
 
+import '../css/index.css'
+
 
 import noVideoImage from '../assets/videoicon.png'
 
 const styles = {
   root: {
-    marginTop: '10px',
-    width: '80%',
+    width: '100%!important',
     marginRight: '0!important',
     marginLeft: '0!important'
   },
@@ -195,29 +196,28 @@ export default class MainPage extends React.Component{
     render(){
         return (
             this.state.loading == true ? <Loading /> :
-            <Grid className = 'mainGrid'style={styles.root} container fluid >
+            <div className = "mainGrid" >
                 
-                <Grid container style={styles.root} >
-                <Grid.Row style={{justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
-                  <HeaderSite></HeaderSite>
+                <Grid  style={styles.root} >
+                <Grid.Row style={{justifyContent: 'center', paddingBottom: '0'}}>
+                  <Grid.Column width={4}>
+                    <HeaderSite></HeaderSite>
+                  </Grid.Column>
+                  <Grid.Column width={12} style={{display: 'flex',alignItems: 'center', justifyContent: 'centered'}}>
+                    <Form style={{width: '100%', display: 'flex'}}>
+                      <Input  style={{width: '75%'}} size='large' focus  placeholder='Insira a URL do vídeo' value = {this.state.videoURL} onChange = {this.changeVideoUrl} />
+                      <Button style={{width: '5%', backgroundColor: '#f5f5f5'}} fluid size = 'tiny' icon = 'right arrow' onClick = {this.chooseVideo}/>
+                    </Form>
+                  </Grid.Column>
                 </Grid.Row>  
-                <Grid.Row style={{justifyContent: 'center'}}>
-                  
-                  <Form style={{width: '75%', display: 'flex', justifyContent: 'centered'}}>
-                    <Input  style={{width: '75%'}} size='large' focus  placeholder='Insira a URL do vídeo' value = {this.state.videoURL} onChange = {this.changeVideoUrl} />
-                    <Button style={{width: '5%', backgroundColor: '#f5f5f5'}} fluid size = 'tiny' icon = 'right arrow' onClick = {this.chooseVideo}/>
-                  </Form>
-                 
-                
-                </Grid.Row>  
-                <Grid.Row >
+                <Grid.Row>
                    
-                    <Grid.Column width={12} style={{justifyContent: 'center', display: 'flex', background: 'whitesmoke', alignItems: 'center'}}>
+                    <Grid.Column className = "leftColumn" style={{justifyContent: 'center', display: 'flex', background: 'whitesmoke', alignItems: 'center'}}>
                       {!this.state.currentPlaying ? <Image width = '30%' height = '50%' src = {noVideoImage}></Image> :
                       <VideoPlayer url = {this.state.videoURL} playing = {this.state.playing} hasPlay = {this.hasPlay} hasPause = {this.hasPause} hasSeek = {this.hasSeek} />}
                     </Grid.Column>
 
-                    <Grid.Column style={styles.rightColumn} width={4}>
+                    <Grid.Column className= "rightColumn" style={styles.rightColumn} >
                       <Feed id = "feedDiv" style = {styles.feedStyle}>
                         {this.state.roomEvents.map( (event, i) => {
                           //console.log(this.state.roomEvents[i]);
@@ -239,7 +239,7 @@ export default class MainPage extends React.Component{
                 </Grid.Row>
                 </Grid>
                 
-            </Grid>
+            </div>
             
         )
     }

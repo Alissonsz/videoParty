@@ -12,24 +12,6 @@ import MainPage from './MainPage'
 import LoginPage from './LoginPage'
 import Error from './Error'
 
-const styles = {
-  root: {
-    width: '100%',
-    height: '100%',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  auxGrid: {
-    paddingRight: '3px',
-    paddingLeft: 0
-  },
-  rightColumn: {
-    padding: 0,
-    posiiton: 'relative'
-  }
-}
-
 
 function App() {
 

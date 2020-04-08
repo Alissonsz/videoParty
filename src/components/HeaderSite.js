@@ -5,8 +5,7 @@ import Logo from '../assets/logo.png'
 
 const styles = {
     header: {
-      display: 'block',
-      width: '100%',
+      
     }
    
   }

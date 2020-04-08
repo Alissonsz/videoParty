@@ -1,5 +1,4 @@
 import React from 'react'
-import videoIcon from '../assets/videoicon.png'
 import ReactPlayer from 'react-player'
 
 const styles = {
